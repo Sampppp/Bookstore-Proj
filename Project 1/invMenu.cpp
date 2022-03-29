@@ -74,7 +74,8 @@ void lookUpBook() {
 					cout << endl << endl << "          Please enter a valid character!";
 			} while (choice != 'y' && choice != 'n');
 			//displays book's information if match is found
-			bookInfo(i);
+			if (choice == 'y')
+				bookInfo(i);
 			return;
 		}
 		//if a match is not found, user will be asked to ender a title
@@ -159,7 +160,10 @@ void editBook() {
 					cout << endl << endl << "          Please enter a valid character!";
 			} while (choice1 != 'y' && choice1 != 'n');
 			//displays book's information if match is found
-			bookInfo(i);
+			if (choice1 == 'y')
+				bookInfo(i);
+			else
+				return;
 
 			//asks for which information to be edited
 			do {
@@ -258,7 +262,10 @@ void deleteBook() {
 					cout << endl << endl << "          Please enter a valid character!";
 			} while (choice != 'y' && choice != 'n');
 			//displays book's information if match is found
-			bookInfo(i);
+			if (choice == 'y')
+				bookInfo(i);
+			else
+				return;
 			//confirms deletion
 			cout << endl << "          Are you sure you want to delete this book's information? (y/n): ";
 			cin >> choice;

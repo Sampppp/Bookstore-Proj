@@ -7,16 +7,15 @@
 ******************************************************************/
 #include "cashier.h"
 #include "bookInfo.h"
-
+#include "strUpper.h"
 void cashier() {
 	//cost variables
 	const double TAX_RATE = 0.6;
 	double subtotal = 0, total, tax;
 
 	//input variables
-	char input;
-	string date1 = "1/1/1", isbn1;
-	string title1;
+	char input, choice;
+	char title1[51], isbn1[14];
 	int quantity1 = 0;
 
 	//loop variable
@@ -34,23 +33,35 @@ void cashier() {
 		//resets variable for the array spot for which selects a book
 		i = 0;
 		
-		//user input
-		cout << "ISBN: ";
-		cin >> isbn1;
-
 		//searches the system for a matching ISBN
 		for (i = 0; i <= 20; i++) {
+			//user input
+			cout << "ISBN: ";
+			cin.ignore();
+			cin.getline(isbn1, 14);
+			//converts to uppercase
+			strUpper(isbn1);
 			//if the ISBN is not matched with any in the system, error will be displayed and function will return
+			
+			if (strstr(isbn[i], isbn1)) {
+				cout << endl << "          Possible match found: " << title[i] << endl << endl;
+				do {
+					cout << "          Is this a correct match?(y/n) ";
+					cin >> choice;
+					if (choice != 'y' && choice != 'n')
+						cout << endl << endl << "          Please enter a valid character!";
+				} while (choice != 'y' && choice != 'n');
+				//saves which array space the book being purchased is in
+				if (choice == 'y') {
+					bookSelect[o] = i;
+					break;
+				}
+				else
+					return;
+			}
 			if (i == 20) {
 				cout << endl << "ISBN is not recognized by the system";
 				return;
-			}
-			//compares inputed ISBN with system's data to find a match
-			if (isbn[i] == isbn1) {
-				//saves which array space the book being purchased is in
-				bookSelect[o] = i;
-				//sets loop variable to stop the loop
-				i = 21;
 			}
 		}
 		//displays the selected book's info
@@ -91,7 +102,7 @@ void cashier() {
 	//receipt 
 	cout << endl << endl << endl
 		<< "Serendipity Book Sellers" << endl << endl
-		<< "Date: " << date1 << endl << endl
+		<< "Date: " << "<date>" << endl << endl
 		<< "Qty             ISBN             Title                 Price                   Total" << endl
 		<< "_____________________________________________________________________________________________" << endl;
 	//repeats the book information for the book(s) being purchased
