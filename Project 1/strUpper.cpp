@@ -1,9 +1,9 @@
 /******************************************************************
-** Program: Chapter 8, Programming Project 4
+** Program: Chapter 10, Programming Project 6
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 02/28/22
+** Due Date: 03/28/22
 ******************************************************************/
 #include "strUpper.h"
 
