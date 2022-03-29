@@ -11,6 +11,6 @@ extern int qty[20];
 extern double wholesale[20], retail[20];
 
 //function prototypes
-void bookInfo(char[], char[], char[], char[], char[], int, double, double);
+void bookInfo(int);
 
 #endif

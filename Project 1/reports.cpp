@@ -65,13 +65,13 @@ void repListing() {
 		<< "               Listing Report" << endl << endl;
 	//displays all the book info in the system
 	for (int i = 0; i < 20; i++) {
-		if (title[i] != "")
+		if (strcmp(title[i], "") == 0)
 			bookInfo(i);
 		else
 			empty++;
 	}
 	//displays the number of books listed and prompts the user to exit back to the menu
-	cout << endl << "          There are " << 20 - empty << "books in the sytem" << endl
+	cout << endl << "          There are " << 20 - empty << " books in the sytem" << endl
 		<< "          1. Return to Menu";
 	do {
 		cout << endl << endl << "          Enter Your Choice: ";
@@ -88,7 +88,7 @@ void repWholesale() {
 		<< "           Serendipity Booksellers" << endl
 		<< "              Wholesale Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (title[i] != "") {
+		if (strcmp(title[i], "") == 0) {
 			bookInfo(i);
 			total += wholesale[i] * qty[i];
 		}
@@ -111,7 +111,7 @@ void repRetail() {
 		<< "           Serendipity Booksellers" << endl
 		<< "                Retail Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (title[i] != "") {
+		if (strcmp(title[i], "") == 0) {
 			bookInfo(i);
 			total += retail[i] * qty[i];
 		}
@@ -129,41 +129,129 @@ void repRetail() {
 }
 
 void repQty() {
-	int arr[20];
-	int *ptr[20];
-
+	int arr1[20], arr2[20];
+	//initializes the array
 	for (int i = 0; i < 20; i++) {
-		arr[i] = qty[i];
-		ptr[i] = &arr[i];
+		arr1[i] = i;
+		arr2[i] = qty[i];
 	}
-	
 	//selection sort the array
 	int i, j, max;
-
 	for (i = 0; i < 19; i++) {
 		max = i;
 		for (j = i + 1; j < 20; j++) {
-			if (arr[j] > arr[max])
+			if (arr2[j] > arr2[max])
 				max = j;
 		}
 		//swaps the values
-		int temp = arr[max];
-		arr[max] = arr[i];
-		arr[i] = temp;
+		int temp = arr1[max];
+		arr1[max] = arr1[i];
+		arr1[i] = temp;
+
+		temp = arr2[max];
+		arr2[max] = arr2[i];
+		arr2[i] = temp;
 	}
-	
-	//printing the sorted array
+
+	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if(title[i] != "")
-			bookInfo(*ptr[i]);
+		if (strcmp(title[i], "") == 0)
+			bookInfo(arr1[i]);
 	}
+	int choice;
+	cout << endl << "          The book have been sorted by quantity in decending order" << endl
+		<< "          1. Return to Menu";
+	do {
+		cout << endl << endl << "          Enter Your Choice: ";
+		cin >> choice;
+		if (choice != 1)
+			cout << endl << "          Please enter 1 to exit" << endl;
+	} while (choice != 1);
+	return;
 }
 
 void repCost() {
+	int arr1[20];
+	double arr2[20];
+	//initializes the array
+	for (int i = 0; i < 20; i++) {
+		arr1[i] = i;
+		arr2[i] = wholesale[i];
+	}
+	//selection sort the array
+	int i, j, max;
+	for (i = 0; i < 19; i++) {
+		max = i;
+		for (j = i + 1; j < 20; j++) {
+			if (arr2[j] > arr2[max])
+				max = j;
+		}
+		//swaps the values
+		int temp1 = arr1[max];
+		arr1[max] = arr1[i];
+		arr1[i] = temp1;
 
+		double temp2 = arr2[max];
+		arr2[max] = arr2[i];
+		arr2[i] = temp2;
+	}
+
+	//prints books in order
+	for (int i = 0; i < 20; i++) {
+		if (strcmp(title[i], "") == 0)
+			bookInfo(arr1[i]);
+	}
+	int choice;
+	cout << endl << "          The book have been sorted by cost in decending order" << endl
+		<< "          1. Return to Menu";
+	do {
+		cout << endl << endl << "          Enter Your Choice: ";
+		cin >> choice;
+		if (choice != 1)
+			cout << endl << "          Please enter 1 to exit" << endl;
+	} while (choice != 1);
+	return;
 }
 
 void repAge() {
+	 int arr1[20];
+	char *arr2[20];
+	//initializes the array
+	for (int i = 0; i < 20; i++) {
+		arr1[i] = i;
+		arr2[i] = date[i];
+	}
+	//selection sort the array
+	int i, j, max;
+	for (i = 0; i < 19; i++) {
+		max = i;
+		for (j = i + 1; j < 20; j++) {
+			if (arr2[j] < arr2[max])
+				max = j;
+		}
+		//swaps the values
+		int temp1 = arr1[max];
+		arr1[max] = arr1[i];
+		arr1[i] = temp1;
 
+		char *temp2 = arr2[max];
+		arr2[max] = arr2[i];
+		arr2[i] = temp2;
+	}
+
+	//prints books in order
+	for (int i = 0; i < 20; i++) {
+		if (strcmp(title[i], "") == 0)
+			bookInfo(arr1[i]);
+	}
+	int choice;
+	cout << endl << "          The book have been sorted by date from oldest to newest" << endl
+		<< "          1. Return to Menu";
+	do {
+		cout << endl << endl << "          Enter Your Choice: ";
+		cin >> choice;
+		if (choice != 1)
+			cout << endl << "          Please enter 1 to exit" << endl;
+	} while (choice != 1);
+	return;
 }
-
