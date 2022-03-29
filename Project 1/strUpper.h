@@ -6,7 +6,8 @@
 #include <string>
 #include <cctype>
 using namespace std;
+
 //function prototypes
-void strUpper();
+void strUpper(char *ptr);
 
 #endif

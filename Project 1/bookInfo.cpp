@@ -7,7 +7,7 @@
 ******************************************************************/
 #include "bookInfo.h"
 
-void bookInfo(char isbn[20][14], char title[20][51], char author[20][31], char publisher[20][31], char date[20][11], int i) {
+void bookInfo(char isbn[14], char title[51], char author[31], char publisher[31], char date[11], int qty, double wholesale, double retail) {
 
 	//Displays book information template
 	cout << endl << endl
@@ -18,7 +18,7 @@ void bookInfo(char isbn[20][14], char title[20][51], char author[20][31], char p
 		<< "          Author: " << author << endl
 		<< "          Publisher: " << publisher << endl
 		<< "          Date Added: " << date << endl
-		<< "          Quantity-On-Hand: " << qty[i] << endl
-		<< "          Wholesale Cost: $" << wholesale[i] << endl
-		<< "          Retail Price: $" << retail[i] << endl;
+		<< "          Quantity-On-Hand: " << qty << endl
+		<< "          Wholesale Cost: $" << wholesale << endl
+		<< "          Retail Price: $" << retail << endl;
 }

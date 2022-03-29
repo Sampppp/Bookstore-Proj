@@ -49,18 +49,19 @@ void invMenu() {
 }
 //inventory functions
 void lookUpBook() {
-	string temp;
+	char temp[51];
 	//asks for title of book
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
-		<< "              Book Information" << endl << endl
-		<< "          Title: ";
+		<< "              Book Information" << endl << endl;
+		
+	cout << "          Title: ";
 	cin.ignore();
-	getline(cin, temp);
+	cin.getline(temp, 51);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		if (title[i] == temp) {
-			bookInfo(i);
+		if (strstr(title[i], temp)) {
+
 			return;
 		}
 	}
@@ -74,18 +75,28 @@ void addBook() {
 			//asks for information input
 			cout << endl << endl
 				<< "           Serendipity Booksellers" << endl
-				<< "                   Add Book" << endl << endl
-				<< "          ISBN: ";
-			cin >> isbn[i];
+				<< "                   Add Book" << endl << endl;
+
+			cout << "          ISBN: ";
+			cin.ignore();
+			cin.getline(isbn[i], 20);
+			strUpper(isbn[i]);
+
 			cout << "          Title: ";
 			cin.ignore();
-			getline(cin, title[i]);
+			cin.getline(title[i], 20);
+			strUpper(title[i]);
+
 			cout << "          Author: ";
 			cin.ignore();
-			getline(cin, author[i]);
+			cin.getline(author[i], 20);
+			strUpper(author[i]);
+
 			cout << "          Publisher: ";
 			cin.ignore();
-			getline(cin, publisher[i]);
+			cin.getline(publisher[i], 20);
+			strUpper(publisher[i]);
+
 			cout << "          Date Added: ";
 			cin >> date[i];
 			cout << "          Quantity-On-Hand: ";
@@ -94,6 +105,8 @@ void addBook() {
 			cin >> wholesale[i];
 			cout << "          Retail Price: $";
 			cin >> retail[i];
+
+			cout << endl << endl << "Book has been entered";
 			return;
 		}
 	}

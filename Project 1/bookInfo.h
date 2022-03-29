@@ -2,14 +2,15 @@
 #define BOOKINFO_H
 
 #include <iostream>
-#include <iomanip>
 #include <string>
 using namespace std;
-//global arrays
-extern char title[][], isbn[][], author[][], publisher[][], date[][];
-extern int qty[];
-extern double wholesale[], retail[];
+
+//global functions
+extern char title[20][51], isbn[20][14], author[20][31], publisher[20][31], date[20][11];
+extern int qty[20];
+extern double wholesale[20], retail[20];
+
 //function prototypes
-void bookInfo(int);
+void bookInfo(char[], char[], char[], char[], char[], int, double, double);
 
 #endif
