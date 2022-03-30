@@ -13,4 +13,15 @@ extern double wholesale[20], retail[20];
 //function prototypes
 void bookInfo(int);
 
+void setTitle(string, int);
+void setISBN();
+void setAuthor();
+void setPublisher();
+void setDate();
+void setQty();
+void setWholesale();
+void setRetail();
+void isEmpty();
+void removeBook();
+
 #endif

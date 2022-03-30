@@ -22,3 +22,35 @@ void bookInfo(int i) {
 		<< "          Wholesale Cost: $" << wholesale[i] << endl
 		<< "          Retail Price: $" << retail[i] << endl;
 }
+
+void setTitle(string *ptr, int i) {
+	BookData x;
+	strcpy(x.title, ptr)
+}
+void setISBN() {
+
+}
+void setAuthor() {
+
+}
+void setPublisher() {
+
+}
+void setDate() {
+
+}
+void setQty() {
+
+}
+void setWholesale() {
+
+}
+void setRetail() {
+
+}
+void isEmpty() {
+
+}
+void removeBook() {
+
+}

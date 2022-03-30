@@ -16,9 +16,11 @@
 using namespace std;
 
 //global arrays
-char title[20][51], isbn[20][14], author[20][31], publisher[20][31], date[20][11];
-int qty[20];
-double wholesale[20], retail[20];
+struct BookData {
+	char title[20][51], isbn[20][14], author[20][31], publisher[20][31], date[20][11];
+	int qty[20];
+	double wholesale[20], retail[20];
+};
 
 int main() {
 	int choice;
@@ -56,3 +58,4 @@ int main() {
 	} while (choice != 4);
 	return 0;
 }
+
