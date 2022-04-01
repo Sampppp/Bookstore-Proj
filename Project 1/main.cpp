@@ -13,14 +13,11 @@
 #include "invMenu.h"
 #include "reports.h"
 #include "strUpper.h" 
+#include "BookData.h"
 using namespace std;
 
-//global arrays
-struct BookData {
-	char title[20][51], isbn[20][14], author[20][31], publisher[20][31], date[20][11];
-	int qty[20];
-	double wholesale[20], retail[20];
-};
+//structure
+BookData book[20];
 
 int main() {
 	int choice;

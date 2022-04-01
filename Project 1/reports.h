@@ -5,6 +5,9 @@
 #include <iomanip>
 #include <string>
 using namespace std;
+
+extern BookData book[20];
+
 //function prototypes
 void reports();
 

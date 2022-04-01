@@ -6,6 +6,7 @@
 ** Due Date: 03/28/22
 ******************************************************************/
 #include "bookInfo.h"
+#include "BookData.h"
 
 void bookInfo(int i) {
 
@@ -13,44 +14,12 @@ void bookInfo(int i) {
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
 		<< "              Book Information" << endl << endl
-		<< "          ISBN: " << isbn[i] << endl
-		<< "          Title: " << title[i] << endl
-		<< "          Author: " << author[i] << endl
-		<< "          Publisher: " << publisher[i] << endl
-		<< "          Date Added: " << date[i] << endl
-		<< "          Quantity-On-Hand: " << qty[i] << endl
-		<< "          Wholesale Cost: $" << wholesale[i] << endl
-		<< "          Retail Price: $" << retail[i] << endl;
-}
-
-void setTitle(string *ptr, int i) {
-	BookData x;
-	strcpy(x.title, ptr)
-}
-void setISBN() {
-
-}
-void setAuthor() {
-
-}
-void setPublisher() {
-
-}
-void setDate() {
-
-}
-void setQty() {
-
-}
-void setWholesale() {
-
-}
-void setRetail() {
-
-}
-void isEmpty() {
-
-}
-void removeBook() {
-
+		<< "          ISBN: " << book[i].isbn << endl
+		<< "          Title: " << book[i].title << endl
+		<< "          Author: " << book[i].author << endl
+		<< "          Publisher: " << book[i].publisher << endl
+		<< "          Date Added: " << book[i].date << endl
+		<< "          Quantity-On-Hand: " << book[i].qty << endl
+		<< "          Wholesale Cost: $" << book[i].wholesale << endl
+		<< "          Retail Price: $" << book[i].retail << endl;
 }

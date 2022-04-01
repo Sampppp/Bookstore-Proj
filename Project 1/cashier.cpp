@@ -8,16 +8,16 @@
 #include "cashier.h"
 #include "bookInfo.h"
 #include "strUpper.h"
+#include "BookData.h"
+
 void cashier() {
 	//cost variables
 	const double TAX_RATE = 0.6;
 	double subtotal = 0, total, tax;
-
 	//input variables
 	char input, choice;
 	char title1[51], isbn1[14];
 	int quantity1 = 0;
-
 	//loop variable
 	int i, o = -1;
 	int bookSelect[20], purchaseQty[20];
@@ -43,8 +43,8 @@ void cashier() {
 			strUpper(isbn1);
 			//if the ISBN is not matched with any in the system, error will be displayed and function will return
 			
-			if (strstr(isbn[i], isbn1)) {
-				cout << endl << "          Possible match found: " << title[i] << endl << endl;
+			if (strstr(book[i].isbn, isbn1)) {
+				cout << endl << "          Possible match found: " << book[i].title << endl << endl;
 				do {
 					cout << "          Is this a correct match?(y/n) ";
 					cin >> choice;
@@ -67,7 +67,7 @@ void cashier() {
 		//displays the selected book's info
 		bookInfo(bookSelect[o]);
 		//checks if the book is in stock
-		if (qty[bookSelect[o]] == 0) {
+		if (book[bookSelect[o]].qty == 0) {
 			cout << endl << endl << "This book is out of stock";
 			return;
 		}
@@ -75,15 +75,15 @@ void cashier() {
 		do {
 			cout << endl << "How many of this book would you like to purchase?: ";
 			cin >> purchaseQty[o];
-			if (purchaseQty[o] > qty[bookSelect[o]] || purchaseQty[o] <= 0)
+			if (purchaseQty[o] > book[bookSelect[o]].qty || purchaseQty[o] <= 0)
 				cout << endl << endl << "Please enter a valid amount";
-		} while (purchaseQty[o] > qty[bookSelect[o]] || purchaseQty[o] <= 0);
+		} while (purchaseQty[o] > book[bookSelect[o]].qty || purchaseQty[o] <= 0);
 
 		//edits the available stock of the book being purchased;
-		qty[bookSelect[o]] -= purchaseQty[o];
+		book[bookSelect[o]].qty -= purchaseQty[o];
 
 		//calculates the subtotal of the book(s) being purchased
-		subtotal += wholesale[bookSelect[o]] * purchaseQty[o];
+		subtotal += book[bookSelect[o]].wholesale * purchaseQty[o];
 
 		//prompts user if they want to add more books to their purchase
 		do {
@@ -107,7 +107,7 @@ void cashier() {
 		<< "_____________________________________________________________________________________________" << endl;
 	//repeats the book information for the book(s) being purchased
 	for (int p = 0; p <= o; p++) {
-		cout << purchaseQty[p] << "               " << isbn[bookSelect[p]] << "             " << title[bookSelect[p]] << "                 " << "$ " << fixed << setprecision(2) << showpoint << wholesale[bookSelect[p]] << "                   $ " << fixed << setprecision(2) << showpoint << (purchaseQty[p] * wholesale[bookSelect[p]]) << endl;
+		cout << purchaseQty[p] << "               " << book[bookSelect[p]].isbn << "             " << book[bookSelect[p]].title << "                 " << "$ " << fixed << setprecision(2) << showpoint << book[bookSelect[p]].wholesale << "                   $ " << fixed << setprecision(2) << showpoint << (purchaseQty[p] * book[bookSelect[p]].wholesale) << endl;
 	}
 	cout << endl << endl
 		<< "          Subtotal $ " << fixed << setprecision(2) << showpoint << subtotal << endl

@@ -145,9 +145,11 @@
     <ClCompile Include="reports.cpp" />
     <ClCompile Include="cashier.cpp" />
     <ClCompile Include="bookInfo.cpp" />
+    <ClCompile Include="BookData.cpp" />
     <ClCompile Include="strUpper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BookData.h" />
     <ClInclude Include="bookInfo.h" />
     <ClInclude Include="cashier.h" />
     <ClInclude Include="strUpper.h" />

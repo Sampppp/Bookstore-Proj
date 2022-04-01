@@ -7,6 +7,7 @@
 ******************************************************************/
 #include "reports.h"
 #include "bookInfo.h"
+#include "BookData.h"
 
 void reports() {
 	int choice;
@@ -65,7 +66,7 @@ void repListing() {
 		<< "               Listing Report" << endl << endl;
 	//displays all the book info in the system
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0)
+		if (isEmpty(i) == 1)
 			bookInfo(i);
 		else
 			empty++;
@@ -88,9 +89,9 @@ void repWholesale() {
 		<< "           Serendipity Booksellers" << endl
 		<< "              Wholesale Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0) {
+		if (isEmpty(i) == 1) {
 			bookInfo(i);
-			total += wholesale[i] * qty[i];
+			total += book[i].wholesale * book[i].qty;
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
@@ -111,9 +112,9 @@ void repRetail() {
 		<< "           Serendipity Booksellers" << endl
 		<< "                Retail Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0) {
+		if (isEmpty(i) == 1) {
 			bookInfo(i);
-			total += retail[i] * qty[i];
+			total += book[i].retail * book[i].qty;
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
@@ -133,7 +134,7 @@ void repQty() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = qty[i];
+		arr2[i] = book[i].qty;
 	}
 	//selection sort the array
 	int i, j, max;
@@ -155,7 +156,7 @@ void repQty() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0)
+		if (isEmpty(i) == 1)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -176,7 +177,7 @@ void repCost() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = wholesale[i];
+		arr2[i] = book[i].wholesale;
 	}
 	//selection sort the array
 	int i, j, max;
@@ -198,7 +199,7 @@ void repCost() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0)
+		if (strcmp(book[i].title, "") == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -219,7 +220,7 @@ void repAge() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = date[i];
+		arr2[i] = book[i].date;
 	}
 	//selection sort the array
 	int i, j, max;
@@ -241,7 +242,7 @@ void repAge() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(title[i], "") == 0)
+		if (strcmp(book[i].title, "") == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
