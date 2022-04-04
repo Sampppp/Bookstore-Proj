@@ -17,6 +17,12 @@
 using namespace std;
 
 //structure
+struct BookData {
+	char title[51], isbn[14], author[31], publisher[31], date[11];
+	int qty;
+	double wholesale, retail;
+};
+
 BookData book[20];
 
 int main() {

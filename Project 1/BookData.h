@@ -6,11 +6,7 @@
 #include <cctype>
 using namespace std;
 
-struct BookData {
-	char title[51], isbn[14], author[31], publisher[31], date[11];
-	int qty;
-	double wholesale, retail;
-};
+
 
 extern BookData book[20];
 
