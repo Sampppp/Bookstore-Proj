@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "BookData.h"
 using namespace std;
 
 extern BookData book[20];

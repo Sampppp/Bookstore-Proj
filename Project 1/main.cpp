@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
 #include "bookInfo.h"
 #include "cashier.h"
 #include "invMenu.h"
@@ -16,16 +17,37 @@
 #include "BookData.h"
 using namespace std;
 
-//structure
-struct BookData {
-	char title[51], isbn[14], author[31], publisher[31], date[11];
-	int qty;
-	double wholesale, retail;
-};
+fstream invFile;
 
+//structure
 BookData book[20];
 
 int main() {
+	//opens the inventory file
+	invFile.open("inventory.dat", ios::in);
+	//creates the inventory file if it does not exist
+	if (invFile.fail()) {
+		invFile.open("inventory.dat", ios::in);
+		invFile.close();
+		invFile.clear();
+		cout << "New file has been created, you must add books to the inventory!";
+	}
+	//copies the data in the inventory file to the book struct
+	else {
+		for (int i = 0; i < 20; i++) {
+			//loops until all 20 books are copied or the end of the file is reached
+			if (invFile.eof())
+				break;
+
+			invFile.seekg(i * sizeof(book), ios::beg);
+			invFile.read(reinterpret_cast<char*>(&book), sizeof(book));
+			book[i];
+		}
+		//closes file
+		invFile.close();
+		invFile.clear();
+	}
+	//main menu
 	int choice;
 	do {
 		//displays menu
@@ -51,6 +73,17 @@ int main() {
 				reports();
 				break;
 			case 4:
+				//opens the inventory file to input any new or changed data from the book struct
+				invFile.open("inventory.dat", ios::out);
+				//copies the data for all the 20 books into inventory file
+				for (int i = 0; i < 20; i++) {
+					invFile.seekp(i * sizeof(book), ios::beg);
+					invFile.write(reinterpret_cast<char*>(&book), sizeof(book));
+				}
+				//closes file
+				invFile.close();
+				invFile.clear();
+
 				exit(0);
 				break;
 			default:

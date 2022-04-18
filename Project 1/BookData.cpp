@@ -10,23 +10,23 @@
 
 void setTitle(char* ptr, int i) {
 	strUpper(ptr);
-	strcpy(book[i].title, ptr);
+	strcpy_s(book[i].title, ptr);
 }
 void setISBN(char* ptr, int i) {
 	strUpper(ptr);
-	strcpy(book[i].isbn, ptr);
+	strcpy_s(book[i].isbn, ptr);
 }
 void setAuthor(char* ptr, int i) {
 	strUpper(ptr);
-	strcpy(book[i].author, ptr);
+	strcpy_s(book[i].author, ptr);
 }
 void setPublisher(char* ptr, int i) {
 	strUpper(ptr);
-	strcpy(book[i].publisher, ptr);
+	strcpy_s(book[i].publisher, ptr);
 }
 void setDate(char* ptr, int i) {
 	strUpper(ptr);
-	strcpy(book[i].date, ptr);
+	strcpy_s(book[i].date, ptr);
 }
 void setQty(int a, int i) {
 	book[i].qty = a;

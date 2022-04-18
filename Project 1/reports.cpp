@@ -66,7 +66,7 @@ void repListing() {
 		<< "               Listing Report" << endl << endl;
 	//displays all the book info in the system
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 1)
+		if (isEmpty(i) == 0)
 			bookInfo(i);
 		else
 			empty++;
@@ -89,7 +89,7 @@ void repWholesale() {
 		<< "           Serendipity Booksellers" << endl
 		<< "              Wholesale Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 1) {
+		if (isEmpty(i) == 0) {
 			bookInfo(i);
 			total += book[i].wholesale * book[i].qty;
 		}
@@ -112,7 +112,7 @@ void repRetail() {
 		<< "           Serendipity Booksellers" << endl
 		<< "                Retail Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 1) {
+		if (isEmpty(i) == 0) {
 			bookInfo(i);
 			total += book[i].retail * book[i].qty;
 		}
@@ -156,7 +156,7 @@ void repQty() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 1)
+		if (isEmpty(i) == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -199,7 +199,7 @@ void repCost() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(book[i].title, "") == 0)
+		if (isEmpty(i) == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -242,7 +242,7 @@ void repAge() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (strcmp(book[i].title, "") == 0)
+		if (isEmpty(i) == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;

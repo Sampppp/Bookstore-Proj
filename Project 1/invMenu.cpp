@@ -10,6 +10,9 @@
 #include "strUpper.h"
 #include "BookData.h"
 
+
+extern BookData book[20];
+
 void invMenu() {
 	int choice;
 	do {
@@ -56,15 +59,14 @@ void lookUpBook() {
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
 		<< "              Book Information" << endl << endl;
-		
+	//asks user for a title
+	cout << "          Title: ";
+	cin.ignore();
+	cin.getline(temp, 51);
+	//converts to uppercase
+	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//asks user for a title
-		cout << "          Title: ";
-		cin.ignore();
-		cin.getline(temp, 51);
-		//converts to uppercase
-		strUpper(temp);
 		//matches the entere d title with the system
 		if (strstr(book[i].title, temp)) {
 			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
@@ -86,6 +88,10 @@ void lookUpBook() {
 }
 
 void addBook() {
+	char title1[51], isbn1[14], author1[31], publisher1[31], date1[11];
+	int qty1;
+	double wholesale1, retail1;
+
 	//looks for an availible space in the array
 	for (int i = 0; i < 20; i++) {
 		if (isEmpty(i) == 1) {
@@ -96,43 +102,43 @@ void addBook() {
 			//isbn
 			cin.ignore();
 			cout << "          ISBN: ";
-			cin.getline(isbn, 14);
-			setISBN(isbn, i);
+			cin.getline(isbn1, 14);
+			setISBN(isbn1, i);
 			
 			//title
 			cout << "          Title: ";
-			cin.getline(title, 51);
-			setTitle(title, i);
+			cin.getline(title1, 51);
+			setTitle(title1, i);
 		
 			//author
 			cout << "          Author: ";
-			cin.getline(author, 31);
-			setAuthor(author, i);
+			cin.getline(author1, 31);
+			setAuthor(author1, i);
 
 			//publisher
 			cout << "          Publisher: ";
-			cin.getline(publisher, 31);
-			setPublisher(publisher, i);
+			cin.getline(publisher1, 31);
+			setPublisher(publisher1, i);
 			
 			//date
 			cout << "          Date Added: ";
-			cin.getline(date, 11);
-			setDate(date, i);
+			cin.getline(date1, 11);
+			setDate(date1, i);
 
 			//quantity
 			cout << "          Quantity-On-Hand: ";
-			cin >> qty;
-			setQty(qty, i);
+			cin >> qty1;
+			setQty(qty1, i);
 
 			//wholesale
 			cout << "          Wholesale Cost: $";
-			cin >> wholesale;
-			setWholesale(wholesale, i);
+			cin >> wholesale1;
+			setWholesale(wholesale1, i);
 
 			//retail
 			cout << "          Retail Price: $";
-			cin >> retail;
-			setRetail(retail, i);
+			cin >> retail1;
+			setRetail(retail1, i);
 
 			cout << endl << endl << "          Book has been entered";
 			return;
@@ -142,6 +148,10 @@ void addBook() {
 }
 
 void editBook() {
+	char title1[51], isbn1[14], author1[31], publisher1[31], date1[11];
+	int qty1;
+	double wholesale1, retail1;
+
 	char temp[51];
 	char choice1;
 	int choice2;
@@ -149,14 +159,14 @@ void editBook() {
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
 		<< "                  Edit Book" << endl << endl;
+	//asks user for a title
+	cout << "          Title: ";
+	cin.ignore();
+	cin.getline(temp, 51);
+	//converts to uppercase
+	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//asks user for a title
-		cout << "          Title: ";
-		cin.ignore();
-		cin.getline(temp, 51);
-		//converts to uppercase
-		strUpper(temp);
 		//matches the entered title with the system
 		if (strstr(book[i].title, temp)) {
 			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
@@ -191,45 +201,45 @@ void editBook() {
 					case 1:
 						cout << "          ISBN: ";
 						cin.ignore();
-						cin.getline(isbn, 14);
-						setISBN(isbn, i);
+						cin.getline(isbn1, 14);
+						setISBN(isbn1, i);
 						break;
 					case 2:
 						cout << "          Title: ";
 						cin.ignore();
-						cin.getline(title, 14);
-						setISBN(title, i);
+						cin.getline(title1, 14);
+						setISBN(title1, i);
 						break;
 					case 3:
 						cout << "          Author: ";
 						cin.ignore();
-						cin.getline(author, 14);
-						setISBN(author, i);
+						cin.getline(author1, 14);
+						setISBN(author1, i);
 					case 4:
 						cout << "          Publisher: ";
 						cin.ignore();
-						cin.getline(publisher, 14);
-						setISBN(publisher, i);
+						cin.getline(publisher1, 14);
+						setISBN(publisher1, i);
 						break;
 					case 5:
 						cout << "          Date added: ";
 						cin.ignore();
-						cin.getline(date, 14);
-						setISBN(date, i);
+						cin.getline(date1, 14);
+						setISBN(date1, i);
 						break;
 					case 6:
 						cout << "          Quantity-On-Hand: ";
-						cin >> qty;
-						setQty(qty, i);
+						cin >> qty1;
+						setQty(qty1, i);
 						break;
 					case 7:
 						cout << "          Wholesale Cost: $";
-						cin >> wholesale;
-						setQty(wholesale, i);						break;
+						cin >> wholesale1;
+						setQty(wholesale1, i);						break;
 					case 8:
 						cout << "          Retail Price: $";
-						cin >> retail;
-						setQty(retail, i);						break;
+						cin >> retail1;
+						setQty(retail1, i);						break;
 					case 9:
 						return;
 						break;
@@ -239,10 +249,9 @@ void editBook() {
 				} while (choice2 > 9 || choice2 < 1);
 			} while (choice2 != 9);
 			return;
-			cout << endl << "          There are no books that match that title." << endl;
 		}
-		//if a match is not found, user will be asked to ender a title
 	}
+	cout << endl << "          There are no books that match that title." << endl;
 }
 
 void deleteBook() {
@@ -252,14 +261,15 @@ void deleteBook() {
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
 		<< "                  Delete Book" << endl << endl;
+	
+	//asks user for a title
+	cout << "          Title: ";
+	cin.ignore();
+	cin.getline(temp, 51);
+	//converts to uppercase
+	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//asks user for a title
-		cout << "          Title: ";
-		cin.ignore();
-		cin.getline(temp, 51);
-		//converts to uppercase
-		strUpper(temp);
 		//matches the entered title with the system
 		if (strstr(book[i].title, temp)) {
 			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
@@ -281,10 +291,9 @@ void deleteBook() {
 				if (choice != 'y' && choice != 'n')
 					cout << endl << endl << "          Please enter a valid character!";
 			} while (choice != 'y' && choice != 'n');
-			
-			if (choice == 'y') {
+			//removes book
+			if (choice == 'y')
 				removeBook(i);
-			}
 			else
 				cout << endl << "          Canceled book deletion.";
 			return;

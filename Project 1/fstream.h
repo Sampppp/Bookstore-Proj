@@ -1,14 +1,12 @@
-#ifndef STRUPPER_H
-#define STRUPPER_H
+#ifndef FSTREAM_H
+#define FSTREAM_H
 
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <cctype>
-#include "BookData.h"
+#include <fstream>
 using namespace std;
 
 //function prototypes
-void strUpper(char *ptr);
 
 #endif
