@@ -8,42 +8,71 @@
 #include "BookData.h"
 #include "strUpper.h"
 
-void setTitle(char* ptr, int i) {
+BookData::BookData() {
+}
+
+void BookData::setTitle(char* ptr) {
 	strUpper(ptr);
-	strcpy_s(book[i].title, ptr);
+	strcpy_s(this->title, ptr);
 }
-void setISBN(char* ptr, int i) {
+void BookData::setISBN(char* ptr) {
 	strUpper(ptr);
-	strcpy_s(book[i].isbn, ptr);
+	strcpy_s(this->isbn, ptr);
 }
-void setAuthor(char* ptr, int i) {
+void BookData::setAuthor(char* ptr) {
 	strUpper(ptr);
-	strcpy_s(book[i].author, ptr);
+	strcpy_s(this->author, ptr);
 }
-void setPublisher(char* ptr, int i) {
+void BookData::setPublisher(char* ptr) {
 	strUpper(ptr);
-	strcpy_s(book[i].publisher, ptr);
+	strcpy_s(this->publisher, ptr);
 }
-void setDate(char* ptr, int i) {
+void BookData::setDate(char* ptr) {
 	strUpper(ptr);
-	strcpy_s(book[i].date, ptr);
+	strcpy_s(this->date, ptr);
 }
-void setQty(int a, int i) {
-	book[i].qty = a;
+void BookData::setQty(int a) {
+	this->qty = a;
 }
-void setWholesale(double a, int i) {
-	book[i].wholesale = a;
+void BookData::setWholesale(double a) {
+	this->wholesale = a;
 }
-void setRetail(double a, int i) {
-	book[i].retail = a;
+void BookData::setRetail(double a) {
+	this->retail = a;
 }
-int isEmpty(int i) {
-	if (book[i].title[0] == 0)
+
+char* BookData::getTitle() {
+	return title;
+}
+char* BookData::getISBN() {
+	return isbn;
+}
+char* BookData::getAuthor() {
+	return author;
+}
+char* BookData::getPublisher()  {
+	return publisher;
+}
+char* BookData::getDate() {
+	return date;
+}
+int BookData::getQty() {
+	return qty;
+}
+double BookData::getWholesale() {
+	return wholesale;
+}
+double BookData::getRetail() {
+	return retail;
+}
+
+int BookData::isEmpty() {
+	if (this->title[0] == 0)
 		return 1;
 	else 
 		return 0;
 }
-void removeBook(int i) {
-	book[i].title[0] = 0;
-	book[i].isbn[0] = 0;
+void BookData::removeBook() {
+	this->title[0] = 0;
+	this->isbn[0] = 0;
 }

@@ -14,12 +14,12 @@ void bookInfo(int i) {
 	cout << endl << endl
 		<< "           Serendipity Booksellers" << endl
 		<< "              Book Information" << endl << endl
-		<< "          ISBN: " << book[i].isbn << endl
-		<< "          Title: " << book[i].title << endl
-		<< "          Author: " << book[i].author << endl
-		<< "          Publisher: " << book[i].publisher << endl
-		<< "          Date Added: " << book[i].date << endl
-		<< "          Quantity-On-Hand: " << book[i].qty << endl
-		<< "          Wholesale Cost: $" << book[i].wholesale << endl
-		<< "          Retail Price: $" << book[i].retail << endl;
+		<< "          ISBN: " << book[i].getISBN() << endl
+		<< "          Title: " << book[i].getTitle() << endl
+		<< "          Author: " << book[i].getAuthor() << endl
+		<< "          Publisher: " << book[i].getPublisher() << endl
+		<< "          Date Added: " << book[i].getDate() << endl
+		<< "          Quantity-On-Hand: " << book[i].getQty() << endl
+		<< "          Wholesale Cost: $" << book[i].getWholesale() << endl
+		<< "          Retail Price: $" << book[i].getRetail() << endl;
 }

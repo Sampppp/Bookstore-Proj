@@ -43,8 +43,8 @@ void cashier() {
 			strUpper(isbn1);
 			//if the ISBN is not matched with any in the system, error will be displayed and function will return
 			
-			if (strstr(book[i].isbn, isbn1)) {
-				cout << endl << "          Possible match found: " << book[i].title << endl << endl;
+			if (strstr(book[i].getISBN(), isbn1)) {
+				cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
 				do {
 					cout << "          Is this a correct match?(y/n) ";
 					cin >> choice;
@@ -67,7 +67,7 @@ void cashier() {
 		//displays the selected book's info
 		bookInfo(bookSelect[o]);
 		//checks if the book is in stock
-		if (book[bookSelect[o]].qty == 0) {
+		if (book[bookSelect[o]].getQty() == 0) {
 			cout << endl << endl << "This book is out of stock";
 			return;
 		}
@@ -75,15 +75,15 @@ void cashier() {
 		do {
 			cout << endl << "How many of this book would you like to purchase?: ";
 			cin >> purchaseQty[o];
-			if (purchaseQty[o] > book[bookSelect[o]].qty || purchaseQty[o] <= 0)
+			if (purchaseQty[o] > book[bookSelect[o]].getQty() || purchaseQty[o] <= 0)
 				cout << endl << endl << "Please enter a valid amount";
-		} while (purchaseQty[o] > book[bookSelect[o]].qty || purchaseQty[o] <= 0);
+		} while (purchaseQty[o] > book[bookSelect[o]].getQty() || purchaseQty[o] <= 0);
 
 		//edits the available stock of the book being purchased;
-		book[bookSelect[o]].qty -= purchaseQty[o];
+		book[bookSelect[o]].setQty(book[bookSelect[o]].getQty() - purchaseQty[o]);
 
 		//calculates the subtotal of the book(s) being purchased
-		subtotal += book[bookSelect[o]].wholesale * purchaseQty[o];
+		subtotal += book[bookSelect[o]].getWholesale() * purchaseQty[o];
 
 		//prompts user if they want to add more books to their purchase
 		do {
@@ -107,7 +107,11 @@ void cashier() {
 		<< "_____________________________________________________________________________________________" << endl;
 	//repeats the book information for the book(s) being purchased
 	for (int p = 0; p <= o; p++) {
-		cout << purchaseQty[p] << "               " << book[bookSelect[p]].isbn << "             " << book[bookSelect[p]].title << "                 " << "$ " << fixed << setprecision(2) << showpoint << book[bookSelect[p]].wholesale << "                   $ " << fixed << setprecision(2) << showpoint << (purchaseQty[p] * book[bookSelect[p]].wholesale) << endl;
+		cout << purchaseQty[p] << "               " 
+			<< book[bookSelect[p]].getISBN() << "             " 
+			<< book[bookSelect[p]].getTitle() << "                 " 
+			<< "$ " << fixed << setprecision(2) << showpoint << book[bookSelect[p]].getWholesale() << "                   $ " 
+			<< fixed << setprecision(2) << showpoint << (purchaseQty[p] * book[bookSelect[p]].getWholesale()) << endl;
 	}
 	cout << endl << endl
 		<< "          Subtotal $ " << fixed << setprecision(2) << showpoint << subtotal << endl

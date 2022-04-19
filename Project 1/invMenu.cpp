@@ -68,8 +68,8 @@ void lookUpBook() {
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
 		//matches the entere d title with the system
-		if (strstr(book[i].title, temp)) {
-			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
+		if (strstr(book[i].getTitle(), temp)) {
+			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
 			do {
 				cout << "          Is this a correct match?(y/n) ";
 				cin >> choice;
@@ -94,7 +94,7 @@ void addBook() {
 
 	//looks for an availible space in the array
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 1) {
+		if (book[i].isEmpty() == 1) {
 			//asks for information input
 			cout << endl << endl
 				<< "           Serendipity Booksellers" << endl
@@ -103,42 +103,42 @@ void addBook() {
 			cin.ignore();
 			cout << "          ISBN: ";
 			cin.getline(isbn1, 14);
-			setISBN(isbn1, i);
+			book[i].setISBN(isbn1);
 			
 			//title
 			cout << "          Title: ";
 			cin.getline(title1, 51);
-			setTitle(title1, i);
+			book[i].setTitle(title1);
 		
 			//author
 			cout << "          Author: ";
 			cin.getline(author1, 31);
-			setAuthor(author1, i);
+			book[i].setAuthor(author1);
 
 			//publisher
 			cout << "          Publisher: ";
 			cin.getline(publisher1, 31);
-			setPublisher(publisher1, i);
+			book[i].setPublisher(publisher1);
 			
 			//date
 			cout << "          Date Added: ";
 			cin.getline(date1, 11);
-			setDate(date1, i);
+			book[i].setDate(date1);
 
 			//quantity
 			cout << "          Quantity-On-Hand: ";
 			cin >> qty1;
-			setQty(qty1, i);
+			book[i].setQty(qty1);
 
 			//wholesale
 			cout << "          Wholesale Cost: $";
 			cin >> wholesale1;
-			setWholesale(wholesale1, i);
+			book[i].setWholesale(wholesale1);
 
 			//retail
 			cout << "          Retail Price: $";
 			cin >> retail1;
-			setRetail(retail1, i);
+			book[i].setRetail(retail1);
 
 			cout << endl << endl << "          Book has been entered";
 			return;
@@ -168,8 +168,8 @@ void editBook() {
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
 		//matches the entered title with the system
-		if (strstr(book[i].title, temp)) {
-			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
+		if (strstr(book[i].getTitle(), temp)) {
+			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
 			do {
 				cout << "          Is this a correct match?(y/n) ";
 				cin >> choice1;
@@ -202,44 +202,44 @@ void editBook() {
 						cout << "          ISBN: ";
 						cin.ignore();
 						cin.getline(isbn1, 14);
-						setISBN(isbn1, i);
+						book[i].setISBN(isbn1);
 						break;
 					case 2:
 						cout << "          Title: ";
 						cin.ignore();
 						cin.getline(title1, 14);
-						setISBN(title1, i);
+						book[i].setTitle(title1);
 						break;
 					case 3:
 						cout << "          Author: ";
 						cin.ignore();
 						cin.getline(author1, 14);
-						setISBN(author1, i);
+						book[i].setAuthor(author1);
 					case 4:
 						cout << "          Publisher: ";
 						cin.ignore();
 						cin.getline(publisher1, 14);
-						setISBN(publisher1, i);
+						book[i].setPublisher(publisher1);
 						break;
 					case 5:
 						cout << "          Date added: ";
 						cin.ignore();
 						cin.getline(date1, 14);
-						setISBN(date1, i);
+						book[i].setDate(date1);
 						break;
 					case 6:
 						cout << "          Quantity-On-Hand: ";
 						cin >> qty1;
-						setQty(qty1, i);
+						book[i].setQty(qty1);
 						break;
 					case 7:
 						cout << "          Wholesale Cost: $";
 						cin >> wholesale1;
-						setQty(wholesale1, i);						break;
+						book[i].setWholesale(wholesale1);						break;
 					case 8:
 						cout << "          Retail Price: $";
 						cin >> retail1;
-						setQty(retail1, i);						break;
+						book[i].setRetail(retail1);						break;
 					case 9:
 						return;
 						break;
@@ -271,8 +271,8 @@ void deleteBook() {
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
 		//matches the entered title with the system
-		if (strstr(book[i].title, temp)) {
-			cout << endl << "          Possible match found: " << book[i].title << endl << endl;
+		if (strstr(book[i].getTitle(), temp)) {
+			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
 			do {
 				cout << "          Is this a correct match?(y/n) ";
 				cin >> choice;
@@ -293,7 +293,7 @@ void deleteBook() {
 			} while (choice != 'y' && choice != 'n');
 			//removes book
 			if (choice == 'y')
-				removeBook(i);
+				book[i].removeBook();
 			else
 				cout << endl << "          Canceled book deletion.";
 			return;

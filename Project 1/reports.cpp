@@ -66,7 +66,7 @@ void repListing() {
 		<< "               Listing Report" << endl << endl;
 	//displays all the book info in the system
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0)
+		if (book[i].isEmpty() == 0)
 			bookInfo(i);
 		else
 			empty++;
@@ -89,9 +89,9 @@ void repWholesale() {
 		<< "           Serendipity Booksellers" << endl
 		<< "              Wholesale Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0) {
+		if (book[i].isEmpty() == 0) {
 			bookInfo(i);
-			total += book[i].wholesale * book[i].qty;
+			total += book[i].getWholesale() * book[i].getQty();
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
@@ -112,9 +112,9 @@ void repRetail() {
 		<< "           Serendipity Booksellers" << endl
 		<< "                Retail Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0) {
+		if (book[i].isEmpty() == 0) {
 			bookInfo(i);
-			total += book[i].retail * book[i].qty;
+			total += book[i].getRetail() * book[i].getQty();
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
@@ -134,7 +134,7 @@ void repQty() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = book[i].qty;
+		arr2[i] = book[i].getQty();
 	}
 	//selection sort the array
 	int i, j, max;
@@ -156,7 +156,7 @@ void repQty() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0)
+		if (book[i].isEmpty() == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -177,7 +177,7 @@ void repCost() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = book[i].wholesale;
+		arr2[i] = book[i].getWholesale();
 	}
 	//selection sort the array
 	int i, j, max;
@@ -199,7 +199,7 @@ void repCost() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0)
+		if (book[i].isEmpty() == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
@@ -220,7 +220,7 @@ void repAge() {
 	//initializes the array
 	for (int i = 0; i < 20; i++) {
 		arr1[i] = i;
-		arr2[i] = book[i].date;
+		arr2[i] = book[i].getDate();
 	}
 	//selection sort the array
 	int i, j, max;
@@ -242,7 +242,7 @@ void repAge() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (isEmpty(i) == 0)
+		if (book[i].isEmpty() == 0)
 			bookInfo(arr1[i]);
 	}
 	int choice;
