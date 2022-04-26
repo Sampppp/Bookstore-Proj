@@ -1,9 +1,9 @@
 /******************************************************************
-** Program: Chapter 10, Programming Project 6
+** Program: Chapter 14, Programming Project 10
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 03/28/22
+** Due Date: 04/25/22
 ******************************************************************/
 #include <iostream>
 #include <iomanip>
@@ -15,12 +15,14 @@
 #include "reports.h"
 #include "strUpper.h" 
 #include "BookData.h"
+#include "Menus.h"
 using namespace std;
 
 fstream invFile;
 
-//structure
+//class
 BookData book[20];
+Menus menu;
 
 int main() {
 	//opens the inventory file
@@ -51,13 +53,7 @@ int main() {
 	int choice;
 	do {
 		//displays menu
-		cout << endl << endl
-			<< "           Serendipity Booksellers" << endl
-			<< "                   Main Menu" << endl << endl
-			<< "          1. Cashier Module" << endl
-			<< "          2. Inventory Database Module" << endl
-			<< "          3. Report Module" << endl
-			<< "          4. Exit" << endl;
+		cout << menu.getShopHeader() << menu.getMainMenu();
 		//repeats the enter prompt if an invalid input was made
 		do {
 			cout << endl << "          Enter Your Choice: ";

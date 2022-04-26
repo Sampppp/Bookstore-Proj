@@ -1,14 +1,15 @@
 /******************************************************************
-** Program: Chapter 10, Programming Project 6
+** Program: Chapter 14, Programming Project 10
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 03/28/22
+** Due Date: 04/25/22
 ******************************************************************/
 #include "invMenu.h"
 #include "bookInfo.h"
 #include "strUpper.h"
 #include "BookData.h"
+#include "Menus.h"
 
 
 extern BookData book[20];
@@ -17,14 +18,7 @@ void invMenu() {
 	int choice;
 	do {
 		//displays menu
-		cout << endl << endl
-			<< "           Serendipity Booksellers" << endl
-			<< "             Inventory Database" << endl << endl
-			<< "          1. Look Up a Book" << endl
-			<< "          2. Add a Book" << endl
-			<< "          3. Edit a Book's Record" << endl
-			<< "          4. Delete a Book" << endl
-			<< "          5. Return to the Main Menu" << endl;
+		cout << menu.getShopHeader() << menu.getInvMenu();
 		//repeats the enter prompt if an invalid input was made
 		do {
 			cout << endl << "          Enter Your Choice: ";
@@ -56,8 +50,7 @@ void lookUpBook() {
 	char temp[51];
 	char choice;
 	//asks for title of book
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "              Book Information" << endl << endl;
 	//asks user for a title
 	cout << "          Title: ";
@@ -67,24 +60,12 @@ void lookUpBook() {
 	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//matches the entere d title with the system
-		if (strstr(book[i].getTitle(), temp)) {
-			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
-			do {
-				cout << "          Is this a correct match?(y/n) ";
-				cin >> choice;
-				if (choice != 'y' && choice != 'n')
-					cout << endl << endl << "          Please enter a valid character!";
-			} while (choice != 'y' && choice != 'n');
-			//displays book's information if match is found
-			if (choice == 'y')
-				bookInfo(i);
+		if (book[i].bookMatch(temp) == true) {
+			bookInfo(i);
 			return;
 		}
-		//if a match is not found, user will be asked to ender a title
 	}
-	//displays if no match could be found
-	cout << endl << "          There are no books that match that title." << endl;
+	cout << endl << endl << "          There are no books that match the entered title.";
 }
 
 void addBook() {
@@ -94,10 +75,9 @@ void addBook() {
 
 	//looks for an availible space in the array
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 1) {
+		if (book[i].isEmpty() == true) {
 			//asks for information input
-			cout << endl << endl
-				<< "           Serendipity Booksellers" << endl
+			cout << menu.getShopHeader()
 				<< "                   Add Book" << endl << endl;
 			//isbn
 			cin.ignore();
@@ -156,8 +136,7 @@ void editBook() {
 	char choice1;
 	int choice2;
 	//asks for title of book
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "                  Edit Book" << endl << endl;
 	//asks user for a title
 	cout << "          Title: ";
@@ -167,33 +146,12 @@ void editBook() {
 	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//matches the entered title with the system
-		if (strstr(book[i].getTitle(), temp)) {
-			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
-			do {
-				cout << "          Is this a correct match?(y/n) ";
-				cin >> choice1;
-				if (choice1 != 'y' && choice1 != 'n')
-					cout << endl << endl << "          Please enter a valid character!";
-			} while (choice1 != 'y' && choice1 != 'n');
-			//displays book's information if match is found
-			if (choice1 == 'y')
-				bookInfo(i);
-			else
-				return;
-
-			//asks for which information to be edited
+		if (book[i].bookMatch(temp) == true) {
+			bookInfo(i);
+			//displays menu for which information is to be edited
 			do {
 				cout << endl << endl << "          What information would you like to edit?" << endl << endl
-					<< "          1. ISBN" << endl
-					<< "          2. Title" << endl
-					<< "          3. Author" << endl
-					<< "          4. Publisher" << endl
-					<< "          5. Date added" << endl
-					<< "          6. Quantity-On-Hand" << endl
-					<< "          7. Wholesale price" << endl
-					<< "          8. Retail price" << endl
-					<< "          9. Return to Inventory Menu" << endl;
+					<< menu.getEditMenu();
 				do {
 					cout << endl << "          Enter Your Choice: ";
 					cin >> choice2;
@@ -222,7 +180,7 @@ void editBook() {
 						book[i].setPublisher(publisher1);
 						break;
 					case 5:
-						cout << "          Date added: ";
+						cout << "          Date Added: ";
 						cin.ignore();
 						cin.getline(date1, 14);
 						book[i].setDate(date1);
@@ -251,15 +209,16 @@ void editBook() {
 			return;
 		}
 	}
-	cout << endl << "          There are no books that match that title." << endl;
+	//displays error if no matches are found
+	cout << endl << endl << "          There are no books that match the entered title.";
 }
 
 void deleteBook() {
 	char temp[51];
 	char choice;
+	bool loop = false;
 	//asks for title of book
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "                  Delete Book" << endl << endl;
 	
 	//asks user for a title
@@ -270,34 +229,25 @@ void deleteBook() {
 	strUpper(temp);
 	//finds if the entered title is valid
 	for (int i = 0; i < 20; i++) {
-		//matches the entered title with the system
-		if (strstr(book[i].getTitle(), temp)) {
-			cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
-			do {
-				cout << "          Is this a correct match?(y/n) ";
-				cin >> choice;
-				if (choice != 'y' && choice != 'n')
-					cout << endl << endl << "          Please enter a valid character!";
-			} while (choice != 'y' && choice != 'n');
-			//displays book's information if match is found
-			if (choice == 'y')
-				bookInfo(i);
-			else
-				return;
-			//confirms deletion
+		if (book[i].bookMatch(temp) == true) {
+			bookInfo(i);
+			//asks for user's verification
 			do {
 				cout << endl << "          Are you sure you want to delete this book's information? (y/n): ";
 				cin >> choice;
-				if (choice != 'y' && choice != 'n')
+				if (choice == 'y')
+					book[i].removeBook();
+				else if (choice == 'n')
+					cout << endl << "          Canceled book deletion.";
+				//if invalid character is entered, verificaton will be asked again
+				else {
 					cout << endl << endl << "          Please enter a valid character!";
-			} while (choice != 'y' && choice != 'n');
-			//removes book
-			if (choice == 'y')
-				book[i].removeBook();
-			else
-				cout << endl << "          Canceled book deletion.";
+					loop = true;
+				}
+			} while (loop == true);
 			return;
 		}
 	}
+	//displays error if no matches are found
 	cout << endl << "          There are no books that match that title." << endl;
 }

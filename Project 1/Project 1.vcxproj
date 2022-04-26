@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Menus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="invMenu.cpp" />
     <ClCompile Include="reports.cpp" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="BookData.h" />
     <ClInclude Include="bookInfo.h" />
+    <ClInclude Include="Menus.h" />
     <ClInclude Include="cashier.h" />
     <ClInclude Include="strUpper.h" />
     <ClInclude Include="invMenu.h" />

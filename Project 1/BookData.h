@@ -1,11 +1,13 @@
 #ifndef BOOKDATA_H
 #define BOOKDATA_H
 
+#include <iostream>
 #include <iomanip>
 #include <string>
 #include <cctype>
 using namespace std;
 
+//class that stores book data
 class BookData {
 private:
 	char title[51], isbn[14], author[31], publisher[31], date[11];
@@ -32,7 +34,9 @@ public:
 	double getWholesale();
 	double getRetail();
 
-	int isEmpty();
+	bool bookMatch(char*);
+
+	bool isEmpty();
 	void removeBook();
 };
 

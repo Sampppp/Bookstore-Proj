@@ -5,11 +5,23 @@
 ** Student: Samson Pak
 ** Due Date: 04/25/22
 ******************************************************************/
-#include "strUpper.h"
+#include "Menus.h"
 
-void strUpper(char *ptr) {
-	while (*ptr != 0) {
-		*ptr = toupper(*ptr);
-		ptr++;
-	}
+Menus::Menus() {
+}
+
+char* Menus::getShopHeader() {
+	return shopHeader;
+}
+char* Menus::getMainMenu() {
+	return mainMenu;
+}
+char* Menus::getInvMenu() {
+	return invMenu;
+}
+char* Menus::getEditMenu() {
+	return editMenu;
+}
+char* Menus::getRepMenu() {
+	return repMenu;
 }

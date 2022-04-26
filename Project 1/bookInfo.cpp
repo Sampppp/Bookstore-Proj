@@ -1,9 +1,9 @@
 /******************************************************************
-** Program: Chapter 10, Programming Project 6
+** Program: Chapter 14, Programming Project 10
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 03/28/22
+** Due Date: 04/25/22
 ******************************************************************/
 #include "bookInfo.h"
 #include "BookData.h"

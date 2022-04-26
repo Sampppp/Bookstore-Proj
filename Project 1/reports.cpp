@@ -1,28 +1,20 @@
 /******************************************************************
-** Program: Chapter 10, Programming Project 6
+** Program: Chapter 14, Programming Project 10
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 03/28/22
+** Due Date: 04/25/22
 ******************************************************************/
 #include "reports.h"
 #include "bookInfo.h"
 #include "BookData.h"
+#include "Menus.h"
 
 void reports() {
 	int choice;
 	do {
 		//displays menu
-		cout << endl << endl
-			<< "           Serendipity Booksellers" << endl
-			<< "                   Reports" << endl << endl
-			<< "          1. Inverntory Listing" << endl
-			<< "          2. Inverntory Wholesale Value" << endl
-			<< "          3. Inverntory Retail Value" << endl
-			<< "          4. Listing by Quantity" << endl
-			<< "          5. Listing by Cost" << endl
-			<< "          6. Listing by Age" << endl
-			<< "          7. Return to Main Menu" << endl;
+		cout << menu.getShopHeader() << menu.getRepMenu();
 		//repeats the enter prompt if an invalid input was made
 		do {
 			cout << endl << "          Enter Your Choice: ";
@@ -61,71 +53,53 @@ void repListing() {
 	//variable to count the empty spots in the system;
 	int empty = 0, choice;
 
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "               Listing Report" << endl << endl;
 	//displays all the book info in the system
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0)
+		if (book[i].isEmpty() == false)
 			bookInfo(i);
 		else
 			empty++;
 	}
 	//displays the number of books listed and prompts the user to exit back to the menu
 	cout << endl << "          There are " << 20 - empty << " books in the sytem" << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
 
 void repWholesale() {
 	int total = 0, choice;
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "              Wholesale Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0) {
+		if (book[i].isEmpty() == false) {
 			bookInfo(i);
 			total += book[i].getWholesale() * book[i].getQty();
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
 	cout << endl << "          The wholesale value of the inventory is $" << total << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
 
 void repRetail() {
 	int total = 0, choice;
-	cout << endl << endl
-		<< "           Serendipity Booksellers" << endl
+	cout << menu.getShopHeader()
 		<< "                Retail Report" << endl << endl;
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0) {
+		if (book[i].isEmpty() == false) {
 			bookInfo(i);
 			total += book[i].getRetail() * book[i].getQty();
 		}
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
 	cout << endl << "          The retail value of the inventory is $" << total << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
 
@@ -156,18 +130,13 @@ void repQty() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0)
+		if (book[i].isEmpty() == false)
 			bookInfo(arr1[i]);
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by quantity in decending order" << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
 
@@ -199,18 +168,13 @@ void repCost() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0)
+		if (book[i].isEmpty() == false)
 			bookInfo(arr1[i]);
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by cost in decending order" << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
 
@@ -242,17 +206,12 @@ void repAge() {
 
 	//prints books in order
 	for (int i = 0; i < 20; i++) {
-		if (book[i].isEmpty() == 0)
+		if (book[i].isEmpty() == false)
 			bookInfo(arr1[i]);
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by date from oldest to newest" << endl
-		<< "          1. Return to Menu";
-	do {
-		cout << endl << endl << "          Enter Your Choice: ";
-		cin >> choice;
-		if (choice != 1)
-			cout << endl << "          Please enter 1 to exit" << endl;
-	} while (choice != 1);
+		<< "          Press any key and enter to return to menu: ";
+	cin >> choice;
 	return;
 }
