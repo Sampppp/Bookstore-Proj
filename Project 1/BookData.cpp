@@ -28,19 +28,6 @@ void BookData::setPublisher(char* ptr) {
 	strUpper(ptr);
 	strcpy_s(this->publisher, ptr);
 }
-void BookData::setDate(char* ptr) {
-	strUpper(ptr);
-	strcpy_s(this->date, ptr);
-}
-void BookData::setQty(int a) {
-	this->qty = a;
-}
-void BookData::setWholesale(double a) {
-	this->wholesale = a;
-}
-void BookData::setRetail(double a) {
-	this->retail = a;
-}
 
 char* BookData::getTitle() {
 	return title;
@@ -53,29 +40,6 @@ char* BookData::getAuthor() {
 }
 char* BookData::getPublisher()  {
 	return publisher;
-}
-char* BookData::getDate() {
-	return date;
-}
-int BookData::getQty() {
-	return qty;
-}
-double BookData::getWholesale() {
-	return wholesale;
-}
-double BookData::getRetail() {
-	return retail;
-}
-
-bool BookData::isEmpty() {
-	if (this->title[0] == 0)
-		return true;
-	else 
-		return false;
-}
-void BookData::removeBook() {
-	this->title[0] = 0;
-	this->isbn[0] = 0;
 }
 
 bool BookData::bookMatch(char* temp) {
@@ -101,4 +65,45 @@ bool BookData::bookMatch(char* temp) {
 		} while (loop == true);
 	}
 	return false;
+}
+
+InvBook::InvBook() {
+}
+
+void InvBook::setDate(char* ptr) {
+	strUpper(ptr);
+	strcpy_s(this->date, ptr);
+}
+void InvBook::setQty(int a) {
+	this->qty = a;
+}
+void InvBook::setWholesale(double a) {
+	this->wholesale = a;
+}
+void InvBook::setRetail(double a) {
+	this->retail = a;
+}
+
+char* InvBook::getDate() {
+	return date;
+}
+int InvBook::getQty() {
+	return qty;
+}
+double InvBook::getWholesale() {
+	return wholesale;
+}
+double InvBook::getRetail() {
+	return retail;
+}
+
+bool InvBook::isEmpty() {
+	if (this->getTitle() == 0)
+		return true;
+	else
+		return false;
+}
+void InvBook::removeBook() {
+	setTitle(0);
+	setISBN(0);
 }
