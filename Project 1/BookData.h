@@ -7,10 +7,11 @@
 #include <cctype>
 using namespace std;
 
-//class that stores book data
+//BookData class
 class BookData {
 private:
 	char title[51], isbn[14], author[31], publisher[31];
+	friend class InvBook;
 public:
 	BookData(); //constructor
 
@@ -26,7 +27,7 @@ public:
 
 	bool bookMatch(char*);
 };
-
+//InvBook class
 class InvBook : public BookData {
 private:
 	char date[11];
@@ -39,6 +40,7 @@ public:
 	void setQty(int);
 	void setWholesale(double);
 	void setRetail(double);
+
 	char* getDate();
 	int getQty();
 	double getWholesale();
@@ -47,6 +49,28 @@ public:
 	bool isEmpty();
 	void removeBook();
 };
+//SoldBook class
+class SoldBook : public InvBook {
+private:
+	static double taxRate;
+	int qtySold, bookIndex;
+	double subtotal, tax, total;
+public:
+	SoldBook(); //constructor
 
-extern BookData book[20];
+	void setQtySold(int);
+	void setBookIndex(int);
+	void setSubtotal(double);
+	void setTax();
+	void setTotal();
+
+	int getQtySold();
+	int getBookIndex();
+	double getSubtotal();
+	double getTax();
+	double getTotal();
+	
+};
+
+extern InvBook book[20];
 #endif

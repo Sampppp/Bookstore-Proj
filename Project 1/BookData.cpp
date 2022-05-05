@@ -9,6 +9,7 @@
 #include "strUpper.h"
 #include "bookInfo.h"
 
+//BookData class
 BookData::BookData() {
 }
 
@@ -45,7 +46,6 @@ char* BookData::getPublisher()  {
 bool BookData::bookMatch(char* temp) {
 	//variable for user verification
 	char choice;
-	bool loop = false;
 
 	//compares the entered title with the system
 	if (strstr(title, temp)) {
@@ -57,16 +57,15 @@ bool BookData::bookMatch(char* temp) {
 			cin >> choice;
 			if (choice == 'y')
 				return true;
-			else if (choice != 'n') {
+			else if (choice != 'n')
 				cout << endl << endl << "          Please enter a valid character!";
-				loop = true;
-			}
 			//repeats verification if invalid character is entered
-		} while (loop == true);
+		} while (choice != 'n');
 	}
 	return false;
 }
 
+//InvBook class
 InvBook::InvBook() {
 }
 
@@ -98,7 +97,7 @@ double InvBook::getRetail() {
 }
 
 bool InvBook::isEmpty() {
-	if (this->getTitle() == 0)
+	if (this->title[0] == 0)
 		return true;
 	else
 		return false;
@@ -106,4 +105,50 @@ bool InvBook::isEmpty() {
 void InvBook::removeBook() {
 	setTitle(0);
 	setISBN(0);
+}
+
+//SoldBook class
+SoldBook::SoldBook() {
+}
+
+double SoldBook::taxRate = 0.06;
+
+void SoldBook::setQtySold(int qty) {
+	this->qtySold = qty;
+}
+
+void SoldBook::setBookIndex(int a) {
+	bookIndex = a;
+}
+
+void SoldBook::setSubtotal(double price) {
+	this->subtotal = price * qtySold;
+}
+
+void SoldBook::setTax() {
+	this->tax = taxRate * subtotal;
+}
+
+void SoldBook::setTotal() {
+	this->total = subtotal + tax;
+}
+
+int SoldBook::getQtySold() {
+	return qtySold;
+}
+
+int SoldBook::getBookIndex() {
+	return bookIndex;
+}
+
+double SoldBook::getSubtotal() {
+	return subtotal;
+}
+
+double SoldBook::getTax() {
+	return tax;
+}
+
+double SoldBook::getTotal() {
+	return total;
 }

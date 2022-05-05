@@ -64,7 +64,7 @@ void repListing() {
 	}
 	//displays the number of books listed and prompts the user to exit back to the menu
 	cout << endl << "          There are " << 20 - empty << " books in the sytem" << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }
@@ -81,7 +81,7 @@ void repWholesale() {
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
 	cout << endl << "          The wholesale value of the inventory is $" << total << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }
@@ -98,7 +98,7 @@ void repRetail() {
 	}
 	//displays the value of books listed and prompts the user to exit back to the menu
 	cout << endl << "          The retail value of the inventory is $" << total << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }
@@ -135,7 +135,7 @@ void repQty() {
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by quantity in decending order" << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }
@@ -173,7 +173,7 @@ void repCost() {
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by cost in decending order" << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }
@@ -211,7 +211,7 @@ void repAge() {
 	}
 	int choice;
 	cout << endl << "          The book have been sorted by date from oldest to newest" << endl
-		<< "          Press any key and enter to return to menu: ";
+		<< "          Press any number and enter to return to menu: ";
 	cin >> choice;
 	return;
 }

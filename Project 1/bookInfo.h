@@ -6,7 +6,7 @@
 #include "BookData.h"
 using namespace std;
 
-extern BookData book[20];
+extern InvBook book[20];
 
 //function prototypes
 void bookInfo(int);

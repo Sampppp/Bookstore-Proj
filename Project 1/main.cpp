@@ -21,7 +21,7 @@ using namespace std;
 fstream invFile;
 
 //class
-BookData book[20];
+InvBook book[20];
 Menus menu;
 
 int main() {

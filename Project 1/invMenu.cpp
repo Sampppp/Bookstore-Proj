@@ -11,9 +11,6 @@
 #include "BookData.h"
 #include "Menus.h"
 
-
-extern BookData book[20];
-
 void invMenu() {
 	int choice;
 	do {

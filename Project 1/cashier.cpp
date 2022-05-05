@@ -11,93 +11,69 @@
 #include "BookData.h"
 
 void cashier() {
-	//cost variables
-	const double TAX_RATE = 0.6;
-	double subtotal = 0, total, tax;
+
 	//input variables
 	char input, choice;
-	char title1[51], isbn1[14];
+	char tempTitle[51], tempISBN[14];
 	int quantity1 = 0;
-	//loop variable
-	int i, o = -1;
-	int bookSelect[20], purchaseQty[20];
+	int totalQty;
+	
+	int bookSelect[20], purchaseQty;
+	
+
+	int totalBooks = 0;
 
 	//Cashier input menu
 	cout << endl << endl
 		<< "Serendupity Booksellers" << endl
 		<< "Cashier Menu" << endl << endl;
-	//repeats if user wants to purchase another book
-	do {
-		//variable increments to count how many different books are bing purchased and used as a variable for the array spot for the quantity of each type of book being bought
-		o++;
-		//resets variable for the array spot for which selects a book
-		i = 0;
-		
-		//searches the system for a matching ISBN
-		for (i = 0; i <= 20; i++) {
-			//user input
-			cout << "ISBN: ";
-			cin.ignore();
-			cin.getline(isbn1, 14);
-			//converts to uppercase
-			strUpper(isbn1);
-			//if the ISBN is not matched with any in the system, error will be displayed and function will return
-			
-			if (strstr(book[i].getISBN(), isbn1)) {
-				cout << endl << "          Possible match found: " << book[i].getTitle() << endl << endl;
-				do {
-					cout << "          Is this a correct match?(y/n) ";
-					cin >> choice;
-					if (choice != 'y' && choice != 'n')
-						cout << endl << endl << "          Please enter a valid character!";
-				} while (choice != 'y' && choice != 'n');
-				//saves which array space the book being purchased is in
-				if (choice == 'y') {
-					bookSelect[o] = i;
-					break;
-				}
-				else
-					return;
+	cout << "How many Titles do you plan to buy?: ";
+	cin >> totalQty;
+	//Dynamically allocated array
+	SoldBook* sold = new SoldBook[totalQty];
+
+	cout << endl << endl
+		<< "Enter book data below" << endl;
+
+	for (int i = 0; i < totalQty; i++) {
+		cout << "Title: ";
+		cin.ignore();
+		cin.getline(tempTitle, 14);
+		strUpper(tempTitle);
+
+		for (int a = 0; a < 20; a++) {
+			if (book[a].bookMatch(tempTitle) == true) {
+				sold[i].setBookIndex(a);
+				break;
 			}
-			if (i == 20) {
-				cout << endl << "ISBN is not recognized by the system";
+			else if (a == 19) {
+				cout << endl << "There are no books that match the title" << endl;
 				return;
 			}
 		}
-		//displays the selected book's info
-		bookInfo(bookSelect[o]);
-		//checks if the book is in stock
-		if (book[bookSelect[o]].getQty() == 0) {
+		bookInfo(sold[i].getBookIndex());
+
+		if (book[sold[i].getBookIndex()].getQty() == 0) {
 			cout << endl << endl << "This book is out of stock";
 			return;
 		}
-		//asks for a valid amount of books being purchased
+
 		do {
 			cout << endl << "How many of this book would you like to purchase?: ";
-			cin >> purchaseQty[o];
-			if (purchaseQty[o] > book[bookSelect[o]].getQty() || purchaseQty[o] <= 0)
+			cin >> purchaseQty;
+			if (purchaseQty > book[sold[i].getBookIndex()].getQty()) {
 				cout << endl << endl << "Please enter a valid amount";
-		} while (purchaseQty[o] > book[bookSelect[o]].getQty() || purchaseQty[o] <= 0);
+			}
+		} while (purchaseQty > book[i].getQty());
 
-		//edits the available stock of the book being purchased;
-		book[bookSelect[o]].setQty(book[bookSelect[o]].getQty() - purchaseQty[o]);
+		book[sold[i].getBookIndex()].setQty(book[sold[i].getBookIndex()].getQty() - purchaseQty);
 
-		//calculates the subtotal of the book(s) being purchased
-		subtotal += book[bookSelect[o]].getWholesale() * purchaseQty[o];
+		sold[i].setQtySold(purchaseQty);
+		sold[i].setSubtotal(book[sold[i].getBookIndex()].getRetail());
+		sold[i].setTax();
+		sold[i].setTotal();
+	}
 
-		//prompts user if they want to add more books to their purchase
-		do {
-			cout << endl << "Would you like to purchase another title? (y/n): ";
-			cin >> input;
-			if (input != 'y' && input != 'n')
-				cout << endl << "Please enter a valid response";
-		} while (input != 'y' && input != 'n');
-
-	} while (input == 'y');
-
-	//calculates the cost of the purchase
-	tax = subtotal * TAX_RATE;
-	total = subtotal + tax;
 
 	//receipt 
 	cout << endl << endl << endl
@@ -105,17 +81,24 @@ void cashier() {
 		<< "Date: " << "<date>" << endl << endl
 		<< "Qty             ISBN             Title                 Price                   Total" << endl
 		<< "_____________________________________________________________________________________________" << endl;
-	//repeats the book information for the book(s) being purchased
-	for (int p = 0; p <= o; p++) {
-		cout << purchaseQty[p] << "               " 
-			<< book[bookSelect[p]].getISBN() << "             " 
-			<< book[bookSelect[p]].getTitle() << "                 " 
-			<< "$ " << fixed << setprecision(2) << showpoint << book[bookSelect[p]].getWholesale() << "                   $ " 
-			<< fixed << setprecision(2) << showpoint << (purchaseQty[p] * book[bookSelect[p]].getWholesale()) << endl;
+	
+	double subtotalTotal = 0, taxTotal = 0, totalTotal = 0;
+
+	for (int i = 0; i < totalQty; i++) {
+		cout << sold[i].getQtySold() << "               " 
+			<< book[sold[i].getBookIndex()].getISBN() << "             " 
+			<< book[sold[i].getBookIndex()].getTitle() << "                 "
+			<< "$ " << fixed << setprecision(2) << showpoint << book[sold[i].getBookIndex()].getRetail() << "                   $ "
+			<< fixed << setprecision(2) << showpoint << sold[i].getSubtotal() << endl;
+
+		subtotalTotal += sold[i].getSubtotal();
+		taxTotal += sold[i].getTax();
+		totalTotal += sold[i].getTotal();
 	}
+
 	cout << endl << endl
-		<< "          Subtotal $ " << fixed << setprecision(2) << showpoint << subtotal << endl
-		<< "               Tax $ " << fixed << setprecision(2) << showpoint << tax << endl
-		<< "             Total $ " << fixed << setprecision(2) << showpoint << total << endl << endl
+		<< "          Subtotal $ " << fixed << setprecision(2) << showpoint << subtotalTotal << endl
+		<< "               Tax $ " << fixed << setprecision(2) << showpoint << taxTotal << endl
+		<< "             Total $ " << fixed << setprecision(2) << showpoint << totalTotal << endl << endl
 		<< "Thank You For Shopping at Serendipity!";
 }
