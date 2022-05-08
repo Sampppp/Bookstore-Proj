@@ -92,7 +92,7 @@ void cashier() {
 			<< fixed << setprecision(2) << showpoint << sold[i].getSubtotal() << endl;
 
 		subtotalTotal += sold[i].getSubtotal();
-		taxTotal += sold[i].getTax();
+		taxTotal += sold[i].getTax(); 
 		totalTotal += sold[i].getTotal();
 	}
 
