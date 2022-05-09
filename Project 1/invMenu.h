@@ -9,9 +9,7 @@ using namespace std;
 
 extern InvBook book[20];
 
-
-//function prototypes
-void invMenu();
+void invMenu();		//function prototypes
 
 void lookUpBook();
 void addBook();

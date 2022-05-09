@@ -9,8 +9,8 @@ using namespace std;
 
 extern InvBook book[20];
 
-//function prototypes
-void reports();
+
+void reports();		//function prototypes
 
 void repListing();
 void repWholesale();

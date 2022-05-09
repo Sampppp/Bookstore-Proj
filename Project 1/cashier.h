@@ -9,7 +9,6 @@ using namespace std;
 
 extern InvBook book[20];
 
-//function prototypes
-void cashier();
+void cashier();		//function prototypes
 
 #endif

@@ -7,13 +7,12 @@
 #include <cctype>
 using namespace std;
 
-//BookData class
-class BookData {
+class BookData {		//BookData class
 private:
 	char title[51], isbn[14], author[31], publisher[31];
 	friend class InvBook;
 public:
-	BookData(); //constructor
+	BookData();		//constructor
 
 	void setTitle(char*);
 	void setISBN(char*);
@@ -27,14 +26,14 @@ public:
 
 	bool bookMatch(char*);
 };
-//InvBook class
-class InvBook : public BookData {
+
+class InvBook : public BookData {		//InvBook class
 private:
 	char date[11];
 	int qty;
 	double wholesale, retail;
 public:
-	InvBook(); //constructor
+	InvBook();		//constructor
 
 	void setDate(char*);
 	void setQty(int);
@@ -49,14 +48,14 @@ public:
 	bool isEmpty();
 	void removeBook();
 };
-//SoldBook class
-class SoldBook : public InvBook {
+
+class SoldBook : public InvBook {		//SoldBook class
 private:
 	static double taxRate;
 	int qtySold, bookIndex;
 	double subtotal, tax, total;
 public:
-	SoldBook(); //constructor
+	SoldBook();		//constructor
 
 	void setQtySold(int);
 	void setBookIndex(int);

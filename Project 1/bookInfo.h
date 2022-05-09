@@ -8,7 +8,6 @@ using namespace std;
 
 extern InvBook book[20];
 
-//function prototypes
-void bookInfo(int);
+void bookInfo(int);		//function prototypes
 
 #endif
