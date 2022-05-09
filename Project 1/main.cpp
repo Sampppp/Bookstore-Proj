@@ -1,9 +1,9 @@
 /******************************************************************
-** Program: Chapter 14, Programming Project 10
+** Program: Chapter 16, Programming Project 12
 ** Course: CS226 CRN 36331
 ** Professor: Ping-Wei Tsai
 ** Student: Samson Pak
-** Due Date: 04/25/22
+** Due Date: 05/9/22
 ******************************************************************/
 #include <iostream>
 #include <iomanip>
@@ -18,37 +18,50 @@
 #include "Menus.h"
 using namespace std;
 
-fstream invFile;
-
 //class
 InvBook book[20];
 Menus menu;
 
+fstream invFile;
+
 int main() {
-	//opens the inventory file
-	invFile.open("inventory.dat", ios::in);
-	//creates the inventory file if it does not exist
-	if (invFile.fail()) {
+	try {		//opens the inventory file
 		invFile.open("inventory.dat", ios::in);
+		if (invFile.fail()) {
+			invFile.close();	//closes file
+			invFile.clear();
+			throw "Inventory File Missing!";		//throws exeption
+		}
+
+		else {		//copies the data in the inventory file to the book struct
+			for (int i = 0; i < 20; i++) {		//loops until all 20 books are copied or the end of the file is reached
+				if (invFile.eof())
+					break;
+
+				invFile.seekg(i * sizeof(book), ios::beg);
+				invFile.read(reinterpret_cast<char*>(&book), sizeof(book));
+				book[i];
+			}
+
+			invFile.close();	//closes file
+			invFile.clear();
+		}
+	}
+	catch (char* msg) {		//catches exeption
+		cout << msg;
+
+		/*
+		invFile.open("inventory.dat", ios::in); //creates new file
 		invFile.close();
 		invFile.clear();
 		cout << "New file has been created, you must add books to the inventory!";
+		*/
+		exit(0);
 	}
-	//copies the data in the inventory file to the book struct
-	else {
-		for (int i = 0; i < 20; i++) {
-			//loops until all 20 books are copied or the end of the file is reached
-			if (invFile.eof())
-				break;
+	
+	
 
-			invFile.seekg(i * sizeof(book), ios::beg);
-			invFile.read(reinterpret_cast<char*>(&book), sizeof(book));
-			book[i];
-		}
-		//closes file
-		invFile.close();
-		invFile.clear();
-	}
+	
 	//main menu
 	int choice;
 	do {
