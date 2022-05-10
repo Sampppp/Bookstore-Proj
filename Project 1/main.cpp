@@ -26,12 +26,9 @@ fstream invFile;
 
 int main() {
 	try {		//opens the inventory file
-		invFile.open("inventory.dat", ios::in);
-		if (invFile.fail()) {
-			invFile.close();	//closes file
-			invFile.clear();
+		invFile.open("inventory.dat", ios::out);
+		if (invFile.fail()) 
 			throw "Inventory File Missing!";		//throws exeption
-		}
 
 		else {		//copies the data in the inventory file to the book struct
 			for (int i = 0; i < 20; i++) {		//loops until all 20 books are copied or the end of the file is reached
@@ -47,16 +44,15 @@ int main() {
 			invFile.clear();
 		}
 	}
-	catch (char* msg) {		//catches exeption
+	catch (string msg) {		//catches exeption
 		cout << msg;
 
-		/*
 		invFile.open("inventory.dat", ios::in); //creates new file
 		invFile.close();
 		invFile.clear();
 		cout << "New file has been created, you must add books to the inventory!";
-		*/
-		exit(0);
+	
+		return 0;
 	}
 	
 	
