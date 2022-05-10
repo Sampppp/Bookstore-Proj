@@ -26,10 +26,10 @@ fstream invFile;
 
 int main() {
 	try {		//opens the inventory file
-		invFile.open("inventory.dat", ios::out);
-		if (invFile.fail()) 
+		invFile.open("inventory.dat", ios::in);
+		if (invFile.fail()) {
 			throw "Inventory File Missing!";		//throws exeption
-
+		}
 		else {		//copies the data in the inventory file to the book struct
 			for (int i = 0; i < 20; i++) {		//loops until all 20 books are copied or the end of the file is reached
 				if (invFile.eof())
