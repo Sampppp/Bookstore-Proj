@@ -22,9 +22,17 @@ void cashier() {
 		<< "Cashier Menu" << endl << endl;
 	cout << "How many Titles do you plan to buy?: ";
 	cin >> totalQty;
-	//Dynamically allocated array
-	SoldBook* sold = new SoldBook[totalQty];
 
+	SoldBook* sold;
+
+	try {
+		//Dynamically allocated array
+		sold = new SoldBook[totalQty];
+	}
+	catch (exception msg){
+		cout << "An error has occured..." << endl << endl;
+		exit(0);
+	}
 	cout << endl << endl
 		<< "Enter book data below" << endl;
 
